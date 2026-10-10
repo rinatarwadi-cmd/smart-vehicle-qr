@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/* ============================================================
+   SMART VEHICLE — Apex Cockpit Design System
+   Direction: Concept A palette × Concept B vertical list layout
+   ============================================================ */
+
+:root {
+  /* Core Palette */
+  --sv-base: #0A0A0C;
+  --sv-surface: #161618;
+  --sv-surface-high: #201F21;
+  --sv-border: #2A2A2E;
+  --sv-border-subtle: #1E1E22;
+
+  /* Text Hierarchy */
+  --sv-text-bright: #FFFFFF;
+  --sv-text-primary: #E4E4E7;
+  --sv-text-muted: #8E8E93;
+
+  /* Accent: Amber-Gold */
+  --sv-accent: #D4A017;
+  --sv-accent-hover: #F3C44E;
+  --sv-accent-deep: #B38612;
+  --sv-accent-subtle: rgba(212, 160, 23, 0.12);
+
+  /* Semantic */
+  --sv-status-ok: #30D158;
+  --sv-status-warn: #FF9F0A;
+  --sv-status-error: #EF4444;
+  --sv-danger: #EF4444;
+  --sv-danger-subtle: rgba(239, 68, 68, 0.12);
+
+  /* Spacing */
+  --sv-space-xs: 0.25rem;
+  --sv-space-sm: 0.5rem;
+  --sv-space-md: 1rem;
+  --sv-space-lg: 1.5rem;
+  --sv-space-xl: 2.5rem;
+  --sv-gutter: 1.5rem;
+  --sv-margin: 1rem;
+
+  /* Radii */
+  --sv-radius-sm: 0.25rem;
+  --sv-radius-md: 0.5rem;
+  --sv-radius-lg: 0.75rem;
+  --sv-radius-full: 9999px;
+
+  /* Transitions */
+  --sv-transition-fast: 120ms ease-out;
+  --sv-transition-normal: 200ms ease-out;
+}
+
+/* Tailwind v4 Theme Integration */
+@theme inline {
+  --color-sv-base: var(--sv-base);
+  --color-sv-surface: var(--sv-surface);
+  --color-sv-surface-high: var(--sv-surface-high);
+  --color-sv-border: var(--sv-border);
+  --color-sv-border-subtle: var(--sv-border-subtle);
+
+  --color-sv-text-bright: var(--sv-text-bright);
+  --color-sv-text-primary: var(--sv-text-primary);
+  --color-sv-text-muted: var(--sv-text-muted);
+
+  --color-sv-accent: var(--sv-accent);
+  --color-sv-accent-hover: var(--sv-accent-hover);
+  --color-sv-accent-deep: var(--sv-accent-deep);
+  --color-sv-accent-subtle: var(--sv-accent-subtle);
+
+  --color-sv-status-ok: var(--sv-status-ok);
+  --color-sv-status-warn: var(--sv-status-warn);
+  --color-sv-status-error: var(--sv-status-error);
+  --color-sv-danger: var(--sv-danger);
+  --color-sv-danger-subtle: var(--sv-danger-subtle);
+
+  --font-grotesk: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--sv-base);
+  color: var(--sv-text-primary);
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   Typography Utilities
+   ============================================================ */
+
+.text-display-hero {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+}
+
+.text-headline-lg {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: -0.02em;
+}
+
+.text-headline-md {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+}
+
+.text-headline-sm {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.text-label-caps-lg {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.text-label-caps-md {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.text-label-caps-sm {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Component Primitives
+   ============================================================ */
+
+/* Surface Card */
+.sv-card {
+  background: var(--sv-surface);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-lg);
+}
+
+/* Skeleton Loading */
+@keyframes sv-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.sv-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--sv-surface) 25%,
+    var(--sv-surface-high) 50%,
+    var(--sv-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: sv-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--sv-radius-sm);
+}
+
+/* Pulse dot for connection status */
+@keyframes sv-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.sv-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sv-status-ok);
+  animation: sv-pulse 2s ease-in-out infinite;
+}
+
+/* Action row hover state */
+.sv-action-row {
+  transition: background 200ms ease-out;
+}
+.sv-action-row:active {
+  background: var(--sv-surface-high);
+}
+
+/* ============================================================
+   Landing Page
+   ============================================================ */
+
+/* Ambient hero glow */
+.sv-hero-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 640px;
+  height: 420px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 160, 23, 0.14) 0%,
+    rgba(212, 160, 23, 0.04) 45%,
+    transparent 72%
+  );
+  pointer-events: none;
+  animation: sv-glow-breathe 5s ease-in-out infinite;
+}
+
+@keyframes sv-glow-breathe {
+  0%, 100% { opacity: 0.55; transform: translateX(-50%) scale(1); }
+  50%      { opacity: 1;    transform: translateX(-50%) scale(1.06); }
+}
+
+/* Scanner preview scan-line */
+@keyframes sv-scan-sweep {
+  0%   { top: 0%;   opacity: 0; }
+  8%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.sv-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--sv-accent) 40%, var(--sv-accent) 60%, transparent 100%);
+  box-shadow: 0 0 16px 3px rgba(212, 160, 23, 0.35);
+  animation: sv-scan-sweep 3.5s ease-in-out infinite;
+  z-index: 10;
+}
+
+/* Feature card lift */
+.sv-feature-card {
+  transition: transform 200ms ease-out, border-color 250ms ease-out, box-shadow 250ms ease-out;
+}
+.sv-feature-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--sv-accent);
+  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.08);
+}
+
+/* Step number circle */
+.sv-step-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--sv-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--sv-accent);
+  flex-shrink: 0;
+}
+
+/* Step connector (horizontal line between steps) */
+.sv-step-connector {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--sv-accent) 0%, var(--sv-border) 100%);
+}
+
+/* ============================================================
+   Print Styles — Printable QR Card
+   ============================================================ */
+@media print {
+  body * { visibility: hidden !important; }
+  .sv-print-area,
+  .sv-print-area * { visibility: visible !important; }
+  .sv-print-area {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
